@@ -125,7 +125,7 @@ export default function Home() {
             <span aria-hidden="true">🎉</span> 関係者招待ランキング <span aria-hidden="true">🎉</span>
           </h1>
           <p className="text-lg md:text-2xl text-purple-700 font-bold">
-            誰が一番の招待王になるか？ 熱いバトルが今始まる！
+            スタッフみんなの力を合わせて東京ドームシティホールを満員にしよう！
           </p>
         </header>
 
