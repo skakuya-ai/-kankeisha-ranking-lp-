@@ -121,11 +121,11 @@ export default function Home() {
 
         {/* ヘッダー */}
         <header className="text-center mb-8">
-          <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-3 drop-shadow-lg">
-            <span aria-hidden="true">🎉</span> 関係者招待ランキング <span aria-hidden="true">🎉</span>
+          <h1 className="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-3 drop-shadow-lg leading-tight">
+            <span aria-hidden="true">🎉</span> 関係者<br />招待ランキング <span aria-hidden="true">🎉</span>
           </h1>
-          <p className="mx-auto max-w-xl text-base md:text-2xl text-purple-700 font-bold leading-tight md:leading-snug">
-            スタッフみんなの力を合わせて東京ドームシティホールを満員にしよう！
+          <p className="mx-auto max-w-sm text-sm md:text-2xl text-purple-700 font-bold leading-tight md:leading-snug">
+            スタッフみんなの力を合わせて<br />東京ドームシティホールを満員にしよう！
           </p>
         </header>
 
@@ -148,18 +148,15 @@ export default function Home() {
         </div>
 
         {/* トップ3 - ポップなカードデザイン */}
-        <section aria-label="トップ3" className="mb-8">
-          <div className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
-            {top3.map((item, index) => (
-              <div key={item.name} className="min-w-[260px] snap-center shrink-0 md:min-w-0">
-                <TopRacerCard
-                  item={item}
-                  rank={index + 1}
-                  isNew={getRankChange(previousRankingsRef.current, item.name, rankings) !== 0}
-                />
-              </div>
-            ))}
-          </div>
+        <section aria-label="トップ3" className="grid grid-cols-3 gap-2 md:gap-6 mb-8">
+          {top3.map((item, index) => (
+            <TopRacerCard
+              key={item.name}
+              item={item}
+              rank={index + 1}
+              isNew={getRankChange(previousRankingsRef.current, item.name, rankings) !== 0}
+            />
+          ))}
         </section>
 
         {/* 4位以下 */}
@@ -216,17 +213,17 @@ function TopRacerCard({ item, rank, isNew }: { item: RankingItem; rank: number; 
 
   return (
     <article
-      className={`bg-gradient-to-br ${config.colors} rounded-3xl p-8 text-center shadow-2xl ${config.borderColor} border-4 transform hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer ${isNew ? 'animate-bounce' : ''}`}
+      className={`bg-gradient-to-br ${config.colors} rounded-2xl p-4 md:p-8 text-center shadow-2xl ${config.borderColor} border-4 transform hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer ${isNew ? 'animate-bounce' : ''}`}
       style={{
         boxShadow: `0 0 40px ${config.shadowColor}, 0 0 80px ${config.shadowColor}CC, inset 0 0 20px rgba(255, 255, 255, 0.4)`,
       }}
       aria-label={`${rank}位: ${item.name}, 招待数: ${item.count.toLocaleString()}`}
     >
-      <div className="text-8xl mb-4" aria-hidden="true">{config.emoji}</div>
-      <div className="text-6xl font-black text-white drop-shadow-xl mb-2" aria-hidden="true">#{rank}</div>
-      <div className="text-2xl font-bold text-white drop-shadow-lg mb-2">{item.name}</div>
-      <div className="text-5xl font-black text-white drop-shadow-xl">{item.count.toLocaleString()}</div>
-      <div className="text-sm font-bold text-white/90 mt-3" aria-hidden="true">招待数</div>
+      <div className="text-6xl md:text-8xl mb-2 md:mb-4" aria-hidden="true">{config.emoji}</div>
+      <div className="text-4xl md:text-6xl font-black text-white drop-shadow-xl mb-1 md:mb-2" aria-hidden="true">#{rank}</div>
+      <div className="text-lg md:text-2xl font-bold text-white drop-shadow-lg mb-1 md:mb-2">{item.name}</div>
+      <div className="text-3xl md:text-5xl font-black text-white drop-shadow-xl">{item.count.toLocaleString()}</div>
+      <div className="text-xs md:text-sm font-bold text-white/90 mt-2 md:mt-3" aria-hidden="true">招待数</div>
     </article>
   );
 }
