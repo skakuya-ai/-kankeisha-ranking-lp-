@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { resolveName } from '@/config/staff';
 
 export const dynamic = 'force-dynamic';
 
@@ -42,7 +43,8 @@ function parseCSV(csvText: string): RankingItem[] {
   lines.slice(1).forEach((line) => {
     if (!line.trim()) return;
     const cells = parseCSVLine(line);
-    const name = cells[nameColumn]?.trim();
+    const raw = cells[nameColumn]?.trim();
+    const name = raw ? resolveName(raw) : undefined;
     if (name) {
       countByName[name] = (countByName[name] || 0) + 1;
     }
