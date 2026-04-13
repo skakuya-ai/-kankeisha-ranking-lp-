@@ -124,7 +124,7 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-3 drop-shadow-lg">
             <span aria-hidden="true">🎉</span> 関係者招待ランキング <span aria-hidden="true">🎉</span>
           </h1>
-          <p className="text-lg md:text-2xl text-purple-700 font-bold">
+          <p className="mx-auto max-w-xl text-base md:text-2xl text-purple-700 font-bold leading-tight md:leading-snug">
             スタッフみんなの力を合わせて東京ドームシティホールを満員にしよう！
           </p>
         </header>
@@ -148,15 +148,18 @@ export default function Home() {
         </div>
 
         {/* トップ3 - ポップなカードデザイン */}
-        <section aria-label="トップ3" className="grid md:grid-cols-3 gap-6 mb-8">
-          {top3.map((item, index) => (
-            <TopRacerCard
-              key={item.name}
-              item={item}
-              rank={index + 1}
-              isNew={getRankChange(previousRankingsRef.current, item.name, rankings) !== 0}
-            />
-          ))}
+        <section aria-label="トップ3" className="mb-8">
+          <div className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
+            {top3.map((item, index) => (
+              <div key={item.name} className="min-w-[260px] snap-center shrink-0 md:min-w-0">
+                <TopRacerCard
+                  item={item}
+                  rank={index + 1}
+                  isNew={getRankChange(previousRankingsRef.current, item.name, rankings) !== 0}
+                />
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* 4位以下 */}
