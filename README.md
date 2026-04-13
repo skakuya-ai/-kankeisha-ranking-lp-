@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 関係者招待ランキング LP
 
-## Getting Started
+Google スプレッドシートの CSV を使ってランキングを表示するシンプルなランディングページです。
 
-First, run the development server:
+## 特徴
+
+- スマホ対応のレスポンシブデザイン
+- 1位〜3位は特別なデザイン表示
+- 4位以下はシンプルな一覧表示
+- 合計個数と最終更新時刻を表示
+- 1秒ごとに自動更新
+- モックデータで すぐに表示確認可能
+
+## セットアップ
+
+### 1. 依存関係のインストール
+
+```bash
+npm install
+```
+
+### 2. スプレッドシートの公開設定
+
+**重要**: 以下の手順でスプレッドシートを公開してください
+
+1. [スプレッドシート](https://docs.google.com/spreadsheets/d/1-Yeia-TIzNlxHmmL12tXlRR9iBaR71s0VrrmEZQuFiY) を開く
+2. 画面右上の「共有」ボタンをクリック
+3. 「一般的なアクセス」の設定を「リンクを知っている全員が閲覧可能」に変更
+4. 「共有」をクリック
+
+### 3. 環境変数設定（必須ではありません）
+
+**デフォルトが設定済みなので、スプレッドシートを別のものに変更する場合のみ実施**
+
+`.env.local` ファイルを編集：
+
+```
+CSV_EXPORT_URL=https://docs.google.com/spreadsheets/d/[SPREADSHEET_ID]/export?format=csv
+```
+
+SPREADSHEET_ID の取得方法：
+- スプレッドシートの URL（`https://docs.google.com/spreadsheets/d/XXXXXX/edit`）から XXXXXX を取得
+
+### 4. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて確認してください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## スプレッドシートの形式
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+以下の形式で データを入力してください：
 
-## Learn More
+| A列（名前） | B列 | C列 | D列 | E列（個数） |
+|-----------|-----|-----|-----|----------|
+| 山田太郎  | -   | -   | -   | 150      |
+| 鈴木花子  | -   | -   | -   | 120      |
+| 佐藤次郎  | -   | -   | -   | 100      |
 
-To learn more about Next.js, take a look at the following resources:
+- **1行目はヘッダー** なので除外されます
+- **2行目以降がランキング対象** になります
+- **A列が空の行は除外** されます
+- **E列の数値が大きい順** に自動ソートされます
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ビルドとデプロイ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
+## トラブルシューティング
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 「データ取得に失敗しました」と出る場合
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. スプレッドシートが公開設定になっているか確認
+2. 環境変数の URL が正しいか確認
+3. スプレッドシートの A列と E列にデータが入っているか確認
+
+### モックデータが表示される場合
+
+環境変数が設定されていないため、サンプルデータが表示されています。これが正常です。
+
+## 技術スタック
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
