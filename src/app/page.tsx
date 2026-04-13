@@ -122,7 +122,7 @@ export default function Home() {
         {/* ヘッダー */}
         <header className="text-center mb-8">
           <h1 className="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-3 drop-shadow-lg leading-tight">
-            <span aria-hidden="true">🎉</span> 関係者<br />招待ランキング <span aria-hidden="true">🎉</span>
+            関係者<br />招待ランキング
           </h1>
           <p className="mx-auto max-w-sm text-sm md:text-2xl text-purple-700 font-bold leading-tight md:leading-snug">
             スタッフみんなの力を合わせて<br />東京ドームシティホールを満員にしよう！
