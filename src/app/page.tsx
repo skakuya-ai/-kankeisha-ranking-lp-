@@ -213,17 +213,17 @@ function TopRacerCard({ item, rank, isNew }: { item: RankingItem; rank: number; 
 
   return (
     <article
-      className={`bg-gradient-to-br ${config.colors} rounded-2xl p-4 md:p-8 text-center shadow-2xl ${config.borderColor} border-4 transform hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer ${isNew ? 'animate-bounce' : ''}`}
+      className={`bg-gradient-to-br ${config.colors} rounded-xl p-4 md:p-6 text-center shadow-lg ${config.borderColor} border-2 transform hover:scale-105 transition-all duration-300 cursor-pointer ${isNew ? 'animate-bounce' : ''}`}
       style={{
-        boxShadow: `0 0 40px ${config.shadowColor}, 0 0 80px ${config.shadowColor}CC, inset 0 0 20px rgba(255, 255, 255, 0.4)`,
+        boxShadow: `0 0 20px ${config.shadowColor}80, inset 0 0 10px rgba(255, 255, 255, 0.3)`,
       }}
       aria-label={`${rank}位: ${item.name}, 招待数: ${item.count.toLocaleString()}`}
     >
-      <div className="text-6xl md:text-8xl mb-2 md:mb-4" aria-hidden="true">{config.emoji}</div>
-      <div className="text-4xl md:text-6xl font-black text-white drop-shadow-xl mb-1 md:mb-2" aria-hidden="true">#{rank}</div>
-      <div className="text-lg md:text-2xl font-bold text-white drop-shadow-lg mb-1 md:mb-2">{item.name}</div>
-      <div className="text-3xl md:text-5xl font-black text-white drop-shadow-xl">{item.count.toLocaleString()}</div>
-      <div className="text-xs md:text-sm font-bold text-white/90 mt-2 md:mt-3" aria-hidden="true">招待数</div>
+      <div className="text-4xl md:text-6xl mb-2 md:mb-3" aria-hidden="true">{config.emoji}</div>
+      <div className="text-2xl md:text-4xl font-bold text-white drop-shadow-lg mb-1" aria-hidden="true">#{rank}</div>
+      <div className="text-base md:text-lg font-semibold text-white drop-shadow-md mb-1">{item.name}</div>
+      <div className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">{item.count.toLocaleString()}</div>
+      <div className="text-xs font-medium text-white/80 mt-2" aria-hidden="true">招待数</div>
     </article>
   );
 }
