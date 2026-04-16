@@ -188,42 +188,15 @@ export default function Home() {
 }
 
 function TopRacerCard({ item, rank, isNew }: { item: RankingItem; rank: number; isNew: boolean }) {
-  const podiumConfig = [
-    {
-      colors: 'from-yellow-300 to-yellow-500',
-      borderColor: 'border-yellow-400',
-      shadowColor: 'rgba(250, 204, 21, 0.8)',
-      emoji: '🥇',
-    },
-    {
-      colors: 'from-gray-200 to-gray-400',
-      borderColor: 'border-gray-300',
-      shadowColor: 'rgba(209, 213, 219, 0.8)',
-      emoji: '🥈',
-    },
-    {
-      colors: 'from-orange-300 to-orange-500',
-      borderColor: 'border-orange-400',
-      shadowColor: 'rgba(249, 115, 22, 0.8)',
-      emoji: '🥉',
-    },
-  ];
-
-  const config = podiumConfig[rank - 1];
-
   return (
     <article
-      className={`bg-gradient-to-br ${config.colors} rounded-xl p-4 md:p-6 text-center shadow-lg ${config.borderColor} border-2 transform hover:scale-105 transition-all duration-300 cursor-pointer ${isNew ? 'animate-bounce' : ''}`}
-      style={{
-        boxShadow: `0 0 20px ${config.shadowColor}80, inset 0 0 10px rgba(255, 255, 255, 0.3)`,
-      }}
+      className={`bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-4 md:p-5 text-center shadow-sm border border-purple-200 transition-all duration-300 ${isNew ? 'animate-bounce' : ''}`}
       aria-label={`${rank}位: ${item.name}, 招待数: ${item.count.toLocaleString()}`}
     >
-      <div className="text-4xl md:text-6xl mb-2 md:mb-3" aria-hidden="true">{config.emoji}</div>
-      <div className="text-2xl md:text-4xl font-bold text-white drop-shadow-lg mb-1" aria-hidden="true">#{rank}</div>
-      <div className="text-base md:text-lg font-semibold text-white drop-shadow-md mb-1">{item.name}</div>
-      <div className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">{item.count.toLocaleString()}</div>
-      <div className="text-xs font-medium text-white/80 mt-2" aria-hidden="true">招待数</div>
+      <div className="text-sm text-purple-600 font-semibold mb-1">第{rank}位</div>
+      <div className="text-lg md:text-xl font-bold text-gray-800 mb-1">{item.name}</div>
+      <div className="text-2xl md:text-3xl font-bold text-purple-700">{item.count.toLocaleString()}</div>
+      <div className="text-xs text-purple-500 mt-2">招待</div>
     </article>
   );
 }
