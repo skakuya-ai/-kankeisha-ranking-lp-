@@ -122,7 +122,7 @@ export default function Home() {
         {/* ヘッダー */}
         <header className="text-center mb-8">
           <h1 className="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-3 drop-shadow-lg leading-tight">
-            関係者<br />招待ランキング
+            関係者<br />招待専用LP
           </h1>
           <p className="mx-auto max-w-sm text-sm md:text-2xl text-purple-700 font-bold leading-tight md:leading-snug">
             スタッフみんなの力を合わせて<br />東京ドームシティホールを満員にしよう！
@@ -141,6 +141,18 @@ export default function Home() {
           <div className="text-base text-white uppercase tracking-widest font-black mb-3" aria-hidden="true">✨ 総招待数 ✨</div>
           <div className="text-7xl md:text-8xl font-black text-white drop-shadow-2xl animate-bounce" aria-hidden="true">
             <CountUpNumber target={totalCount} />
+          </div>
+          <div className="mt-4 mb-2">
+            <div className="text-sm text-white/90 font-semibold mb-1">目標: 300人</div>
+            <div className="w-full bg-white/20 rounded-full h-3">
+              <div
+                className="bg-white h-3 rounded-full transition-all duration-1000"
+                style={{ width: `${Math.min((totalCount / 300) * 100, 100)}%` }}
+              ></div>
+            </div>
+            <div className="text-xs text-white/80 mt-1">
+              達成度: {Math.round((totalCount / 300) * 100)}%
+            </div>
           </div>
           <div className="text-sm text-white/90 mt-4 font-semibold" aria-hidden="true">
             🕐 最終更新: {new Date(lastUpdated).toLocaleString('ja-JP')}
@@ -163,7 +175,7 @@ export default function Home() {
         {others.length > 0 && (
           <section className="bg-white/40 backdrop-blur-md rounded-3xl p-8 border-4 border-white/60 shadow-xl" aria-label="4位以下のランキング">
             <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-6 text-center">
-              <span aria-hidden="true">🏃‍♂️</span> チャレンジャーたち
+              <span aria-hidden="true">🤝</span> みんなの協力者たち
             </h2>
             <div className="space-y-3" role="list">
               {others.map((item, index) => (
